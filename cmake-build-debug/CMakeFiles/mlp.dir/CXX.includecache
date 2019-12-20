@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/dgageot/Documents/tryzone/mlp/Layer.cpp
+iostream
+-
+algorithm
+-
+random
+-
+functional
+-
+Layer.h
+/home/dgageot/Documents/tryzone/mlp/Layer.h
+
+/home/dgageot/Documents/tryzone/mlp/Layer.h
+vector
+-
+
+/home/dgageot/Documents/tryzone/mlp/NeuralNetwork.cpp
+NeuralNetwork.h
+/home/dgageot/Documents/tryzone/mlp/NeuralNetwork.h
+
+/home/dgageot/Documents/tryzone/mlp/NeuralNetwork.h
+vector
+-
+Layer.h
+/home/dgageot/Documents/tryzone/mlp/Layer.h
+
+/home/dgageot/Documents/tryzone/mlp/main.cpp
+iostream
+-
+NeuralNetwork.h
+/home/dgageot/Documents/tryzone/mlp/NeuralNetwork.h
+
