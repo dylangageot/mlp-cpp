@@ -14,18 +14,17 @@ public:
      * Construct a layer by specifing its size
      * @param size size of the layer
      */
-    explicit Layer(const int& size) : _size(size), _outputs(size) {};
-    /**
-     * Construct a layer by setting up output values
-     * Used to construct input layer of a neural network
-     * @param outputs desired output values
-     */
-    explicit Layer(const std::vector<double>& outputs) : _size(outputs.size()), _outputs(outputs) {};
+    explicit Layer(const int& size) : _size(size), _outputs(size), _weights(size), _biases(size) {};
     /**
      * Compute output values by feeding the layer
-     * @param layer feeding layer
+     * @param input feeding layer
      */
     void feed(const Layer& input);
+    /**
+     * Compute output values by feeding the layer
+     * @param input feeding vector
+     */
+    void feed(const std::vector<double>& input);
     /**
      * Return size of the layer
      * @return layer size
@@ -54,7 +53,7 @@ protected:
     /**
       * Weights of the layer
       */
-    std::vector<double> _weigths;
+    std::vector<std::vector<double>> _weights;
     /**
      * Biases of the layer
      */
@@ -71,7 +70,7 @@ private:
      * Set-up weights and biases to correspond with input layer
      * @param input
      */
-    void setUp(const Layer& input);
+    void setUp(const std::vector<double>& input);
 
 };
 

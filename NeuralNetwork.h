@@ -12,14 +12,30 @@
 class NeuralNetwork {
 
 public:
-    NeuralNetwork() = default;
-    void feedForward(const std::vector<double>& inputs);
-//    std::vector<double>& results() const;
+    /**
+     * Construct a neural network with a specified topology
+     * @param sizes vector containing size for the layers
+     */
+    explicit NeuralNetwork(const std::vector<int>& sizes);
+    /**
+     * Feed the neural network with input data
+     * @param inputs input data
+     */
+    void feed(const std::vector<double>& inputs);
+    /**
+     * Get output data of the neural network
+     * @return output data
+     */
+    std::vector<double> getOutputs() const;
+
+    void train(const std::pair<std::vector<double>, std::vector<double>>& values);
 
 protected:
-    std::vector<Layer> layers;
+    /**
+     * Ordered vector of layers
+     */
+    std::vector<Layer> _layers;
 
 };
-
 
 #endif //MLP_NEURALNETWORK_H

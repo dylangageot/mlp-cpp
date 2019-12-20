@@ -3,12 +3,12 @@
 
 int main() {
 
+    NeuralNetwork network({2,1});
+    network.feed({1,1});
 
-    for (int i = 0; i < 10; i++) {
-        Layer l(5);
-        std::cout << l.getID() << std::endl;
+    for (auto elt : network.getOutputs()) {
+        std::cout << elt << " ";
     }
 
-    std::cout << "Hello, World!" << std::endl;
     return 0;
 }
