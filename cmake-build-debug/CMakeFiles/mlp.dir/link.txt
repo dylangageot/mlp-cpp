@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/mlp.dir/main.cpp.o CMakeFiles/mlp.dir/NeuralNetwork.cpp.o CMakeFiles/mlp.dir/Layer.cpp.o  -o mlp 
