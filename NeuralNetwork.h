@@ -30,11 +30,17 @@ public:
 
     void train(const std::pair<std::vector<double>, std::vector<double>>& values);
 
+
 protected:
     /**
      * Ordered vector of layers
      */
     std::vector<Layer> _layers;
+
+
+    void backpropagate(const std::vector<double>& expectedOutputs);
+
+    void gradientDescent(const std::vector<double>& inputs);
 
 };
 

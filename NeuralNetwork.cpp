@@ -3,6 +3,7 @@
 //
 
 #include <stdexcept>
+#include <algorithm>
 #include "NeuralNetwork.h"
 
 void NeuralNetwork::feed(const std::vector<double> &inputs) {
@@ -31,15 +32,48 @@ NeuralNetwork::NeuralNetwork(const std::vector<int> &sizes) {
     }
 }
 
-void NeuralNetwork::train(const std::pair<std::vector<double>, std::vector<double>> &values) {
+void NeuralNetwork::train(const std::pair<std::vector<double>, std::vector<double>> &stimuli) {
+
+    // Retrieve reference to input and output data
+    const std::vector<double>& inputs = stimuli.first;
+    const std::vector<double>& outputs = stimuli.second;
 
     // Feed the neural network with the input
+    feed(inputs);
 
-    // Compute the cost and error
-
-    // Back propagate
+    // Backpropagate
+    backpropagate(outputs);
 
     // Readjust weights and biases
+    gradientDescent(inputs);
 
+}
 
+void NeuralNetwork::backpropagate(const std::vector<double> &expectedOutputs) {
+    // Compute cost error
+    std::vector<double> errorOutputs = getOutputs();
+    std::transform(errorOutputs.begin(), errorOutputs.end(), expectedOutputs.begin(),
+                   errorOutputs.begin(), std::minus<>());
+
+    for (auto it = _layers.end() - 1; it != _layers.begin() - 1; --it) {
+        // If it is the first layer, feed it with input data
+        if (it == _layers.end() - 1) {
+            it->backpropagate(errorOutputs);
+        } else {
+            // Otherwise feed it with the precedent layer
+            it->backpropagate(*(it+1));
+        }
+    }
+}
+
+void NeuralNetwork::gradientDescent(const std::vector<double> &inputs) {
+    for (auto it = _layers.end() - 1; it != _layers.begin() - 1; --it) {
+        // If it is the first layer, feed it with input data
+        if (it == _layers.begin()) {
+            it->gradientDescent(inputs, 0);
+        } else {
+            // Otherwise feed it with the precedent layer
+            it->gradientDescent(*(it-1), 0);
+        }
+    }
 }
